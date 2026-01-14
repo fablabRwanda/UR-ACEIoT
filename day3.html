@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3 – PCB Milling: Techniques & Fabrication Process - FabLab Rwanda</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .day-page-container {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: var(--bg-light);
+        }
+
+        .day-page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .day-page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .day-page-header .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .day-page-header .back-link:hover {
+            color: white;
+        }
+
+        .pdf-container {
+            background: var(--bg-white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 900px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .pdf-download {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-download:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .activities-section {
+            margin-top: 3rem;
+        }
+
+        .activities-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .activity-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .activity-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .activity-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .activity-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .activity-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .activity-section p,
+        .activity-section li {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .activity-section ul li {
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .activity-section ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .activity-section strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .activity-highlight {
+            background: rgba(0, 168, 89, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+            margin: 1rem 0;
+        }
+
+        .activity-highlight p {
+            margin: 0;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .activity-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: var(--bg-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .activity-table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .activity-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-dark);
+        }
+
+        .activity-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .activity-table tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        @media (max-width: 768px) {
+            .pdf-viewer {
+                height: 600px;
+            }
+
+            .day-page-header h1 {
+                font-size: 2rem;
+            }
+
+            .activities-title {
+                font-size: 1.75rem;
+            }
+
+            .activity-card {
+                padding: 1.5rem;
+            }
+
+            .activity-title {
+                font-size: 1.5rem;
+            }
+
+            .activity-section h4 {
+                font-size: 1.1rem;
+            }
+
+            .activity-table {
+                font-size: 0.9rem;
+            }
+
+            .activity-table th,
+            .activity-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">FabLab Rwanda</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#topics">Topics</a></li>
+                <li><a href="index.html#outcomes">Outcomes</a></li>
+                <li><a href="index.html#prerequisites">Prerequisites</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-page-container">
+        <div class="day-page-header">
+            <div class="container">
+                <a href="index.html#topics" class="back-link">
+                    ← Back to Course Topics
+                </a>
+                <h1>Day 3 – PCB Milling: Techniques & Fabrication Process</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="pdf-container">
+                <iframe 
+                    src="Course_presentation/Day3_PCB_Designing_with_KiCad.pdf" 
+                    class="pdf-viewer"
+                    title="Day 3 - PCB Designing with KiCad PDF">
+                </iframe>
+                <div style="margin-top: 1rem;">
+                    <a href="Course_presentation/Day3_PCB_Designing_with_KiCad.pdf" 
+                       download 
+                       class="pdf-download">
+                        Download PDF: PCB Designing with KiCad
+                    </a>
+                </div>
+            </div>
+
+            <div class="pdf-container">
+                <iframe 
+                    src="Course_presentation/Day3_PCB_Milling_From_Design_to_Functional_Circuit.pdf" 
+                    class="pdf-viewer"
+                    title="Day 3 - PCB Milling: From Design to Functional Circuit PDF">
+                </iframe>
+                <div style="margin-top: 1rem;">
+                    <a href="Course_presentation/Day3_PCB_Milling_From_Design_to_Functional_Circuit.pdf" 
+                       download 
+                       class="pdf-download">
+                        Download PDF: PCB Milling - From Design to Functional Circuit
+                    </a>
+                </div>
+            </div>
+
+            <div class="activities-section">
+                <div class="container">
+                    <h2 class="activities-title">After Class Activity</h2>
+
+                    <div class="activity-card">
+                        <span class="activity-number">Activity</span>
+                        <h3 class="activity-title">Single-Sided Microcontroller PCB Design (KiCad)</h3>
+                        <p class="activity-subtitle">ATtiny45 LED Control with Push Button & ISP Programming</p>
+
+                        <div class="activity-section">
+                            <h4>Objective</h4>
+                            <p>Students will design a single-sided PCB using KiCad that:</p>
+                            <ul>
+                                <li>Uses an ATtiny45 microcontroller</li>
+                                <li>Controls an LED using a push button</li>
+                                <li>Can be programmed via a 6-pin ISP header</li>
+                                <li>Is suitable for PCB milling and hand soldering</li>
+                            </ul>
+                        </div>
+
+                        <div class="activity-section">
+                            <h4>Circuit to Design</h4>
+                            <div class="activity-highlight">
+                                <p>👉 ATtiny45 Button-Controlled LED Board</p>
+                            </div>
+                        </div>
+
+                        <div class="activity-section">
+                            <h4>Functional Description</h4>
+                            <ul>
+                                <li>ATtiny45 runs at 5V</li>
+                                <li>LED turns ON when the button is pressed</li>
+                                <li>Program uploaded via ISP programmer</li>
+                                <li>Board powered through an external connector</li>
+                                <li>This is a real microcontroller system, not just a demo circuit.</li>
+                            </ul>
+                        </div>
+
+                        <div class="activity-section">
+                            <h4>Block Diagram (Conceptual)</h4>
+                            <div class="activity-highlight">
+                                <p>Power ──> ATtiny45 ──> LED + Resistor</p>
+                                <p style="margin-top: 0.5rem;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Push Button (Input)</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── ISP Header (Programming)</p>
+                            </div>
+                        </div>
+
+                        <div class="activity-section">
+                            <h4>List of Components (Required)</h4>
+                            <table class="activity-table">
+                                <thead>
+                                    <tr>
+                                        <th>Component</th>
+                                        <th>Value / Type</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Microcontroller</td>
+                                        <td>ATtiny45 (DIP-8 or SOIC-8)</td>
+                                        <td>Beginner-friendly</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LED</td>
+                                        <td>5mm THT LED</td>
+                                        <td>Status indicator</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Resistor</td>
+                                        <td>220Ω</td>
+                                        <td>LED current limiting</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Push Button</td>
+                                        <td>Tactile switch (THT)</td>
+                                        <td>User input</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Power Connector</td>
+                                        <td>2-pin header or terminal</td>
+                                        <td>5V input</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ISP Header</td>
+                                        <td>2×3 pin (6-pin)</td>
+                                        <td>Programming interface</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Decoupling Capacitor</td>
+                                        <td>0.1 µF</td>
+                                        <td>Power stability (important)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="activity-section">
+                            <h4>Pin Usage (Beginner-Friendly Assignment)</h4>
+                            <table class="activity-table">
+                                <thead>
+                                    <tr>
+                                        <th>ATtiny45 Pin</th>
+                                        <th>Function</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>VCC</td>
+                                        <td>Power (5V)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>GND</td>
+                                        <td>Ground</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PB0</td>
+                                        <td>LED output</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PB2</td>
+                                        <td>Button input</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PB5</td>
+                                        <td>RESET (ISP)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PB3</td>
+                                        <td>MOSI (ISP)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PB4</td>
+                                        <td>MISO (ISP)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PB1</td>
+                                        <td>SCK (ISP)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin-top: 1rem;"><strong>Important:</strong> PB0–PB5 are reused for both I/O and programming.</p>
+                        </div>
+
+                        <div class="activity-section">
+                            <h4>KiCad – What Students Must Do</h4>
+                            
+                            <h5 style="color: var(--text-dark); font-size: 1.1rem; margin-top: 1rem; margin-bottom: 0.5rem;">Step 1 – Create the Schematic</h5>
+                            <p>Students must:</p>
+                            <ul>
+                                <li>Place ATtiny45 symbol</li>
+                                <li>Add:
+                                    <ul>
+                                        <li>LED + resistor</li>
+                                        <li>Push button (with pull-down or pull-up)</li>
+                                        <li>Power connector</li>
+                                        <li>6-pin ISP header</li>
+                                        <li>0.1 µF capacitor between VCC & GND</li>
+                                    </ul>
+                                </li>
+                                <li>Label all nets clearly</li>
+                            </ul>
+                            <p><strong>Rule:</strong> Every pin must have a purpose.</p>
+
+                            <h5 style="color: var(--text-dark); font-size: 1.1rem; margin-top: 1rem; margin-bottom: 0.5rem;">Step 2 – Assign Footprints</h5>
+                            <p>Through-hole recommended for beginners:</p>
+                            <ul>
+                                <li>ATtiny45: DIP-8 footprint</li>
+                                <li>LED: 5mm THT</li>
+                                <li>Resistor: Axial THT</li>
+                                <li>Button: THT tactile</li>
+                                <li>ISP: PinHeader_2x3</li>
+                                <li>Power: PinHeader_1x02</li>
+                            </ul>
+
+                            <h5 style="color: var(--text-dark); font-size: 1.1rem; margin-top: 1rem; margin-bottom: 0.5rem;">Step 3 – Single-Sided PCB Layout</h5>
+                            <p>Students must:</p>
+                            <ul>
+                                <li>Define board outline (~60 × 40 mm)</li>
+                                <li>Place components logically:
+                                    <ul>
+                                        <li>ISP near ATtiny45</li>
+                                        <li>LED visible on board edge</li>
+                                    </ul>
+                                </li>
+                                <li>Route only one copper layer</li>
+                                <li>No vias allowed</li>
+                                <li>Use jumpers only if necessary</li>
+                            </ul>
+                            <p>Recommended milling rules:</p>
+                            <ul>
+                                <li>Trace width: 0.5–0.6 mm</li>
+                                <li>Clearance: 0.5 mm</li>
+                            </ul>
+
+                            <h5 style="color: var(--text-dark); font-size: 1.1rem; margin-top: 1rem; margin-bottom: 0.5rem;">Step 4 – Design Rule Check (DFM)</h5>
+                            <p>Students must:</p>
+                            <ul>
+                                <li>Run DRC</li>
+                                <li>Fix all errors</li>
+                                <li>Verify:
+                                    <ul>
+                                        <li>No unconnected nets</li>
+                                        <li>No trace overlap</li>
+                                        <li>Correct clearance for milling</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h5 style="color: var(--text-dark); font-size: 1.1rem; margin-top: 1rem; margin-bottom: 0.5rem;">Step 5 – Prepare for Fabrication</h5>
+                            <ul>
+                                <li>Add text:
+                                    <ul>
+                                        <li>Board name</li>
+                                        <li>Student initials</li>
+                                    </ul>
+                                </li>
+                                <li>Export:
+                                    <ul>
+                                        <li>Gerber files</li>
+                                        <li>Drill file</li>
+                                    </ul>
+                                </li>
+                                <li>Inspect Gerbers before milling</li>
+                            </ul>
+                        </div>
+
+                        <div class="activity-section">
+                            <h4>Deliverables</h4>
+                            <p>Students submit:</p>
+                            <ul>
+                                <li>KiCad project folder</li>
+                                <li>Schematic screenshot</li>
+                                <li>PCB layout screenshot</li>
+                                <li>Gerber files</li>
+                                <li>Short reflection:
+                                    <ul>
+                                        <li>Biggest routing challenge</li>
+                                        <li>One improvement for next version</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="activity-section">
+                            <h4>Learning Outcomes</h4>
+                            <p>Students will learn:</p>
+                            <ul>
+                                <li>Microcontroller-based PCB design</li>
+                                <li>ISP programming concepts</li>
+                                <li>Single-sided routing strategies</li>
+                                <li>DFM for PCB milling</li>
+                                <li>How design decisions affect fabrication</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FabLab Rwanda</h3>
+                    <p>Fabrication Laboratory</p>
+                    <p class="footer-subtitle">Empowering Innovation Through Digital Fabrication</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@fablab.rw</p>
+                    <p>Phone: +250 788 XXX XXX</p>
+                    <p>Location: Kigali, Rwanda</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Partner Institution</h3>
+                    <p><strong>UR-ACEIoT</strong></p>
+                    <p>Advanced Centre for Internet of Things</p>
+                    <p>University of Rwanda</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FabLab Rwanda. All rights reserved. | Course offered in partnership with UR-ACEIoT</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
