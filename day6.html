@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6 – Digital Fabrication II: Additive Manufacturing - FabLab Rwanda</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .day-page-container {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: var(--bg-light);
+        }
+
+        .day-page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .day-page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .day-page-header .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .day-page-header .back-link:hover {
+            color: white;
+        }
+
+        .pdf-container {
+            background: var(--bg-white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 900px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .pdf-download {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-download:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        @media (max-width: 768px) {
+            .pdf-viewer {
+                height: 600px;
+            }
+
+            .day-page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">FabLab Rwanda</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#topics">Topics</a></li>
+                <li><a href="index.html#outcomes">Outcomes</a></li>
+                <li><a href="index.html#prerequisites">Prerequisites</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="day-page-container">
+        <div class="day-page-header">
+            <div class="container">
+                <a href="index.html#topics" class="back-link">
+                    ← Back to Course Topics
+                </a>
+                <h1>Day 6 – Digital Fabrication II: Additive Manufacturing</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="pdf-container">
+                <iframe 
+                    src="Course_presentation/Day6_3D_Printer_Operation–Ultimaker.pdf" 
+                    class="pdf-viewer"
+                    title="Day 6 - 3D Printer Operation – Ultimaker PDF">
+                </iframe>
+                <div style="margin-top: 1rem;">
+                    <a href="Course_presentation/Day6_3D_Printer_Operation–Ultimaker.pdf" 
+                       download 
+                       class="pdf-download">
+                        Download PDF: 3D Printer Operation – Ultimaker
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FabLab Rwanda</h3>
+                    <p>Fabrication Laboratory</p>
+                    <p class="footer-subtitle">Empowering Innovation Through Digital Fabrication</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@fablab.rw</p>
+                    <p>Phone: +250 788 XXX XXX</p>
+                    <p>Location: Kigali, Rwanda</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Partner Institution</h3>
+                    <p><strong>UR-ACEIoT</strong></p>
+                    <p>Advanced Centre for Internet of Things</p>
+                    <p>University of Rwanda</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FabLab Rwanda. All rights reserved. | Course offered in partnership with UR-ACEIoT</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
